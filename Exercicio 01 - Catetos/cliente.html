@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enviar mensagens</title>
+</head>
+
+<body>
+    <h1>Envie uma mensagem para o servidor</h1>
+    <label for="enderecoServidorInput">Endereço do Servidor:</label>
+    <input type="text" id="enderecoServidorInput" placeholder="Digite o endereço do servidor" value="localhost"><br><br>
+    //porta padrão 3000, mas pode ser alterada se necessário
+    <label for="inputPorta">Porta:</label>
+    <input type="text" id="inputPorta" placeholder="Digite a porta" value="3000"><br><br>
+    <label for="cata">Cateto A:</label>
+    <input type="number" id="cata" placeholder="Digite um NÚMERO">
+    <label for="catb">Cateto B:</label>
+    <input type="number" id="catb" placeholder="Digite um NÚMERO">
+    <button onclick="enviarMensagem()">Enviar</button>
+    <br>
+    <br>
+    <h3> Resposta do servidor</h3>
+    <span id="respostaDoServidor">.....</span>    
+
+    <script>
+        async function enviarMensagem() {            
+            const cat_A = document.getElementById('cata').value;
+            const cat_B = document.getElementById('catb').value;
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const porta = document.getElementById('inputPorta').value;
+            try {
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ cat_A, cat_B })
+                });
+
+                const data = await response.text();
+                document.getElementById("respostaDoServidor").innerHTML = data;
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro na comunicação com o servidor');
+            }
+        }
+    </script>
+</body>
+
+</html>
