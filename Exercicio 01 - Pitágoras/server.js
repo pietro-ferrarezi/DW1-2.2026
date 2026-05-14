@@ -13,10 +13,10 @@ app.use(express.json())
 
 app.post("/enviar", (req, res) => {
     const { cat_A, cat_B } = req.body
-    let hipotenusa = Math.sqrt((cat_A**2) + (cat_B**2))
+    let hipotenusa = Math.hypot(cat_A, cat_B)
     res.send(`A hipotenusa é: ${hipotenusa}`)
 })
 
 app.listen("3000", () => {
-    console.log("Server Running!")
+    console.log("Server Running! 1")
 })

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback de Notas</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+    }
+
+    .container{
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        width: 320px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h2{
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    label{
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+        font-weight: bold;
+    }
+
+    input{
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input:focus{
+        border-color: #4facfe;
+    }
+
+    button{
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #4facfe;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover{
+        background: #2196f3;
+    }
+
+    #resposta{
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Verificar Nota</h2>
+
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome">
+
+    <label for="nota">Nota:</label>
+    <input type="number" name="nota" id="nota">
+
+    <button onclick="verificar()">Verificar</button>
+
+    <span id="resposta"></span>
+</div>
+    <script defer>
+        async function verificar() {
+            const nome = document.querySelector("#nome").value
+            const nota = parseFloat(document.querySelector("#nota").value)
+
+            try {
+                const response = await fetch("http://localhost:3000/verificar_nota", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nome, nota })
+                })
+
+                const resposta = await response.text()
+                document.querySelector('#resposta').innerText = resposta
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,9 +3,3 @@
 
 # Variáveis de ambiente
 **/.env
-
-# IDEs / Editores
-.vscode/
-
-# Arquivos do Nodemon
-nodemon.json

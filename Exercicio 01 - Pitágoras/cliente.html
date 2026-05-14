@@ -24,9 +24,9 @@
 
     <script>
         async function enviarMensagem() {            
-            const cat_A = document.getElementById('cata').value;
-            const cat_B = document.getElementById('catb').value;
-            const enderecoServidor = document.getElementById('enderecoServidorInput').value;
+            const cat_A = parseFloat(document.getElementById('cata').value)
+            const cat_B = parseFloat(document.getElementById('catb').value)
+            const enderecoServidor = document.getElementById('enderecoServidorInput').value
             const porta = document.getElementById('inputPorta').value;
             try {
                 const response = await fetch(`http://${enderecoServidor}:${porta}/enviar`, {
