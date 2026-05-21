@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server</title>
+</head>
+<body>
+    <form id="dados" action="http://localhost:3030/registrar" method="post">
+        <label for="ra">RA:</label>
+        <input type="number" name="ra" id="ra" required><br>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required><br>
+        <label for="imagem">Sua foto:</label>
+        <input type="file" name="imagem" id="imagem" required><br>
+        <label for="nota1">Nota 1° Bimestre:</label>
+        <input type="number" name="nota1" id="nota1" required><br>
+        <label for="nota2">Nota 2° Bimestre:</label>
+        <input type="number" name="nota2" id="nota2" required><br>
+        <label for="nota3">Nota 3° Bimestre:</label>
+        <input type="number" name="nota3" id="nota3" required><br>
+        <label for="nota4">Nota 4° Bimestre:</label>
+        <input type="number" name="nota4" id="nota4" required><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script defer src="script.js"></script>
+</body>
+</html>
