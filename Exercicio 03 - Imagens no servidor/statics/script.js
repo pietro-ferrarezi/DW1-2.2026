@@ -11,7 +11,10 @@ form.addEventListener("submit", async (e) => {
             body:  formData
         })
 
-        const resultado = await response.text()
+        const resposta = await response.text()
+        const JSONresultado = JSON.parse(resposta)
+
+        document.querySelector("#resultSpan").innerHTML = `Nome: ${JSONresultado.nome} <br> Média: ${JSONresultado.media} <br> Resultado: ${JSONresultado.resultado}`
     } catch (err) {
         console.log(err)
     }
