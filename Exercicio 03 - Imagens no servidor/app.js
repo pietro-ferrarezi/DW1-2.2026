@@ -1,6 +1,7 @@
 const express = require("express")
 const multer = require("multer")
 const path = require("path")
+const fs = require('fs').promises;
 
 const app = express()
 
@@ -16,9 +17,22 @@ app.use((req, res, next) => {
     next()
 })
 
+async function garantirPastaExistente(nomePasta) {
+    try {
+        const caminho = path.join(__dirname, nomePasta);
+        
+        await fs.mkdir(caminho, { recursive: true });
+        console.log(`Pasta garantida com sucesso em: ${caminho}`);
+    } catch (error) {
+        console.error('Erro ao criar a pasta:', error);
+    }
+}
+
+garantirPastaExistente('./images');
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'images/');
+    cb(null, './images/');
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);
