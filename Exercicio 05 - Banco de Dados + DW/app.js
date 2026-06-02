@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 // GET DATABASE DATA - ROUTES
 
-app.get("/", async (req, res) => {
+app.get("/pessoas", async (req, res) => {
     query = "SELECT * FROM public.pessoa"
     result = await pool.query(query)
 
