@@ -1,17 +1,25 @@
 const express = require("express")
 const dotenv = require("dotenv").config()
 const {Pool} = require("pg")
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3030
 
 const app = express()
 
-const pool = new Pool ({
-    host: process.env.DB_HOST,
-    name: process.env.DB_PORT,
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS
-})
+const { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS } = process.env;
+
+if (DB_HOST && DB_PORT && DB_NAME && DB_USER && DB_PASS) {
+  const pool = new Pool({
+    host: DB_HOST,
+    port: Number(DB_PORT),
+    database: DB_NAME,
+    user: DB_USER,
+    password: DB_PASS,
+  });
+} else {
+  console.error(
+    "Variáveis de ambiente não encontradas para conexão ao banco de dados.",
+  );
+}
 
 app.use(express.json())
 
