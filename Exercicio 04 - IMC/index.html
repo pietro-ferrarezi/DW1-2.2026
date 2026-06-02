@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server</title>
+</head>
+<body>
+    <form id="dados" action="http://localhost:3030/registrar" method="post">
+        <label for="ra">CPF:</label>
+        <input type="number" name="cpf" id="cpf" required><br>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required><br>
+        <label for="imagem">Sua foto:</label>
+        <input type="file" name="imagem" id="imagem" required><br>
+        <label for="peso">Peso:</label>
+        <input type="number" name="peso" id="peso" required step="0.1"><br>
+        <label for="altura">Altura:</label>
+        <input type="number" name="altura" id="altura" required step="0.01"><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="resultSpan"></p>
+
+    <script defer src="script.js"></script>
+</body>
+</html>
