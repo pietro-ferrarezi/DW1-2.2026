@@ -16,8 +16,8 @@ if (DB_HOST && DB_PORT && DB_NAME && DB_USER && DB_PASS) {
     password: DB_PASS,
   });
 } else {
-  console.error(
-    "Variáveis de ambiente não encontradas para conexão ao banco de dados.",
+  console.error( 
+    "ERRO - Variáveis de ambiente não encontradas para conexão ao banco de dados.",
   );
 }
 
