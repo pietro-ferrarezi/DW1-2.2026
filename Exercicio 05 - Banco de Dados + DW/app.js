@@ -7,19 +7,13 @@ const app = express()
 
 const { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS } = process.env;
 
-if (DB_HOST && DB_PORT && DB_NAME && DB_USER && DB_PASS) {
-  const pool = new Pool({
-    host: DB_HOST,
-    port: Number(DB_PORT),
-    database: DB_NAME,
-    user: DB_USER,
-    password: DB_PASS,
-  });
-} else {
-  console.error( 
-    "ERRO - Variáveis de ambiente não encontradas para conexão ao banco de dados.",
-  );
-}
+const pool = new Pool({
+  host: DB_HOST,
+  port: Number(DB_PORT),
+  database: DB_NAME,
+  user: DB_USER,
+  password: DB_PASS,
+});
 
 app.use(express.json())
 
