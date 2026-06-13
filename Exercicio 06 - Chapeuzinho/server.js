@@ -1,5 +1,4 @@
 const express = require('express');
-const os = require('os');
 const { Pool } = require('pg');
 require('dotenv').config();
 
@@ -143,10 +142,11 @@ app.post('/api/mensagens', async (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Servidorina atenta na porta ${port}`);
     console.log(`Rota disponível:`);
-    console.log(`  POST http://localhost:${port}/api/mensagens - Enviar Bilhetes`);
+    console.log(`  (POST) http://localhost:${port}/api/mensagens - Enviar Bilhetes`);
     console.log(`\nMensagens disponíveis (possíveis)`);
     console.log(`  "vovó"     -> Resposta de saudação`);
     console.log(`  "chegou"   -> Confirmação de chegada`);
     console.log(`  "situacao" -> Consulta de reposição de estoque`);
-    console.log(`  (outras)   -> Mensagem não entendida`);
+    console.log(`  "poes"     -> Consulta de estoque de pães disponíveis`);
+    console.log(`  [outras]   -> Mensagem não entendida`);
 });
