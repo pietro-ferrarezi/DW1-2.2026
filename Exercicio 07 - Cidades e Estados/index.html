@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidades e Estados</title>
+</head>
+<body>
+    <div>
+        <input type="search">
+        <button id="search">Pesquisar</button>
+        <button id="getAll">Buscar todas as cidade</button>
+    </div>
+
+    <script>
+        document.querySelector("#search").addEventListener("click", async () => {
+            const searchInput = document.querySelector("#searchInput").value
+            const response = await new fetch("http://localhost:3030/api/buscarCidade", {
+                method: 'POST',
+                body: {
+                    "buscaNome": searchInput
+                }
+            })
+
+            const resposta = await response.json()
+
+            console.log(resposta.resposta)
+
+
+        })
+    </script>
+</body>
+</html>
