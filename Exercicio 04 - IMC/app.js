@@ -72,7 +72,7 @@ app.post("/imc", upload.single("imagem"), (req, res) => {
         resultado = "Obesidade Grau III"
     }
 
-    console.log(nome, imc, resultado)
+    console.log("nome=%s imc=%s resultado=%s", nome, imc, resultado)
     res.json({ nome, imc, resultado })
 
 })
