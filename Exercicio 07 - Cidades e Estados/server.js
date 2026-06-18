@@ -5,6 +5,13 @@ const { Pool } = require('pg')
 const app = express()
 app.use(express.json())
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 const pool = new Pool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -25,9 +32,9 @@ app.get("/api/cidades", async (req, res) => {
 })
 
 app.post("/api/buscarCidade", async (req, res) => {
-    const { buscaNome } = req.body
+    const { nome } = req.body
     
-    const query = await pool.query("SELECT * FROM cidade WHERE nome_cidade ILIKE $1", [buscaNome])
+    const query = await pool.query("SELECT * FROM cidade WHERE nome_cidade ILIKE $1", [nome])
 
     const resposta = await query.rows[0]
 

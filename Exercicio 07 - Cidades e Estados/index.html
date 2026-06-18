@@ -7,25 +7,35 @@
 </head>
 <body>
     <div>
-        <input type="search">
+        <input type="search" id="searchInput">
         <button id="search">Pesquisar</button>
         <button id="getAll">Buscar todas as cidade</button>
     </div>
+    <div>
+        <p>Resultado:</p>
+        <span id="resultado">
+
+        </span>
+    </div>
 
     <script>
-        document.querySelector("#search").addEventListener("click", async () => {
-            const searchInput = document.querySelector("#searchInput").value
-            const response = await new fetch("http://localhost:3030/api/buscarCidade", {
+        document.getElementById("search").addEventListener("click", async () => {
+            const nome = String(document.getElementById("searchInput").value)
+            const response = await fetch("http://localhost:3030/api/buscarCidade", {
                 method: 'POST',
-                body: {
-                    "buscaNome": searchInput
-                }
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify({
+                    "nome": nome
+                })
             })
 
             const resposta = await response.json()
 
             console.log(resposta.resposta)
 
+            document.getElementById("resultado").innerHTML = ` Nome: ${resposta.resposta.nome_cidade} <br> Estado: ${resposta.resposta.sigla_estado}`
 
         })
     </script>

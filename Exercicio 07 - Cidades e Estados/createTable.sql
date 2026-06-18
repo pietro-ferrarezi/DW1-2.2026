@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS cidade, estado;
+DROP TABLE IF EXISTS public.cidade, public.estado;
 
-CREATE TABLE estado (
+CREATE TABLE public.estado (
     sigla_estado CHAR(2) PRIMARY KEY,
     nome_estado VARCHAR(255)
 );
-CREATE TABLE cidade (
+CREATE TABLE public.cidade (
     id_cidade SERIAL PRIMARY KEY,
     nome_cidade VARCHAR(255),
     sigla_estado CHAR(2),
